@@ -45,7 +45,7 @@ export class Socket {
                     this.io.emit("disconnect-reason", reason);
                 }
                 this.io.disconnect(true);
-                this.unbind();
+                this.bindings.unbind();
                 return this;
             });
     }
@@ -76,7 +76,7 @@ export class Socket {
     }
 
     private disconnected(): Promise<void> {
-        return this.leaveAll().then(() => this.unbind());
+        return this.leaveAll().then(() => this.bindings.unbind());
     }
 
     private bind(): void {
@@ -86,9 +86,5 @@ export class Socket {
             [this.io, "error", error => this.errorOccured(error)],
             [this.io, "disconnect", () => this.disconnected()],
         ]);
-    }
-
-    private unbind(): void {
-        this.bindings.unbind();
     }
 }
