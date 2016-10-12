@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "allowJs": false,
+    "moduleResolution": "node",
+    "pretty": true,
+    "removeComments": true,
+    "preserveConstEnums": true
+  },
+  "files": [
+    "typings/index.d.ts",
+    "src/index.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false
+}
