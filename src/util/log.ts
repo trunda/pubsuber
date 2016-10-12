@@ -2,6 +2,7 @@ import * as Winston from "winston";
 
 /**
  * Instance of winston logger (used as global logger)
+ * 
  * @type {LoggerInstance}
  */
 export const log = new Winston.Logger({
