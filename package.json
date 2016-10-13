@@ -14,7 +14,7 @@
     "build": "tsc -p .",
     "build:watch": "npm run build -- -w",
     "commitmsg": "conventional-changelog-lint -e",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "prepush": "npm test"
   },
   "jshintConfig": {
