@@ -1,0 +1,6 @@
+{
+  "rules": {
+      "type-enum": [2, "always", ["build", "chore"]]
+    }
+
+}
