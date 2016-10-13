@@ -43,13 +43,13 @@ describe("private-channel.spec", () => {
     }
 
     it("sends post request on subscription to private channel", () => {
-        const stub = sandbox.stub(request, "post", (...args) => Promise.resolve(false));
+        const stub = sandbox.stub(request, "post", (...args: any[]) => Promise.resolve(false));
         subscribe();
         sinon.assert.calledOnce(stub);
     });
 
     it("pass headers during post request", () => {
-        const stub = sandbox.stub(request, "post", (...args) => Promise.resolve(false));
+        const stub = sandbox.stub(request, "post", (...args: any[]) => Promise.resolve(false));
         subscribe();
         (<any> expect(stub.lastCall.args[1]).to).containSubset(
             {headers: {"X-CSRF-TOKEN": "test-csrf", Foo: "Bar", cookie: "test-cookie=cookie"}}
@@ -57,8 +57,8 @@ describe("private-channel.spec", () => {
     });
 
     it("disconnect socket, when auth failed", () => {
-        sandbox.stub(request, "post", (...args) => Promise.reject({message: "test"}));
-        const disconnectMethod = sandbox.stub(io, "disconnect", (...args) => true);
+        sandbox.stub(request, "post", (...args: any[]) => Promise.reject({message: "test"}));
+        const disconnectMethod = sandbox.stub(io, "disconnect", (...args: any[]) => true);
         const closeMethod = sandbox.spy(socket, "close");
 
         return socket.join("private-test-channel", {}).then((channel: Channel) => {
@@ -69,7 +69,7 @@ describe("private-channel.spec", () => {
     });
 
     it("joins channel when auth passed", () => {
-        sandbox.stub(request, "post", (...args) => Promise.resolve(true));
+        sandbox.stub(request, "post", (...args: any[]) => Promise.resolve(true));
 
         return socket.join("private-test-channel", {}).then(() => {
             expect(socket.isMemberOf(sockets.channels.channel("private-test-channel"))).to.be.ok;
@@ -79,7 +79,7 @@ describe("private-channel.spec", () => {
     describe("does not authenticate when authenticated method intercepts", () => {
         it("by returning falsy value", () => {
             const authenticatedMethod = sandbox.stub(PrivateChannel.prototype, "authenticated", () => false);
-            sandbox.stub(request, "post", (...args) => Promise.resolve(true));
+            sandbox.stub(request, "post", (...args: any[]) => Promise.resolve(true));
             return socket.join("private-test-channel", {}).then((channel: Channel) => {
                 sinon.assert.calledWith(authenticatedMethod, socket, true);
                 expect(socket.isMemberOf(channel)).to.be.false;
@@ -90,7 +90,7 @@ describe("private-channel.spec", () => {
             const authenticatedMethod = sandbox.stub(PrivateChannel.prototype, "authenticated", () => {
                 throw new Error("Test exception");
             });
-            sandbox.stub(request, "post", (...args) => Promise.resolve(true));
+            sandbox.stub(request, "post", (...args: any[]) => Promise.resolve(true));
             return socket.join("private-test-channel", {}).then((channel: Channel) => {
                 sinon.assert.calledWith(authenticatedMethod, socket, true);
                 expect(socket.isMemberOf(channel)).to.be.false;

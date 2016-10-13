@@ -83,7 +83,7 @@ export class Socket {
         this.bindings = bindAll([
             [this.io, "subscribe", (message: SubscriptionMessage) => this.join(message.channel, message.auth || {})],
             [this.io, "unsubscribe", (message: SubscriptionMessage) => this.leave(message.channel, message.auth || {})],
-            [this.io, "error", error => this.errorOccured(error)],
+            [this.io, "error", (error: any) => this.errorOccured(error)],
             [this.io, "disconnect", () => this.disconnected()],
         ]);
     }

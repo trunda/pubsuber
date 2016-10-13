@@ -33,7 +33,7 @@ export function bind(to: any, event: string, callback: Function): Function {
 export function bindAll(events: Array<any>): any {
     const result: any = events.map((event) => bind.apply(null, event));
     result.unbind = () => {
-        result.forEach(unbind => unbind());
+        result.forEach((unbind: Function) => unbind());
     };
 
     return result;

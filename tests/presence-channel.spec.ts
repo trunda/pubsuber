@@ -29,7 +29,7 @@ describe("presence-channel.spec", () => {
         return sockets.add(helpers.createSocket());
     }
 
-    function addToChannel(channel: String, name: String = "John Dode", id = null): any {
+    function addToChannel(channel: String, name: String = "John Dode", id: number = null): any {
         const socket = connect();
         const data = {channel_data: {
             user_id: id ? id : userIds,
