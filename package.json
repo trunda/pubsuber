@@ -13,7 +13,9 @@
     "prebuild": "rm -rf dist",
     "build": "tsc -p .",
     "build:watch": "npm run build -- -w",
-    "commitmsg": "conventional-changelog-lint -e"
+    "commitmsg": "conventional-changelog-lint -e",
+    "precommit": "npm test",
+    "prepush": "npm test"
   },
   "jshintConfig": {
     "esversion": 6
