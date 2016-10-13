@@ -1,6 +1,6 @@
 {
   "rules": {
-      "type-enum": [2, "always", ["build", "chore"]]
+      "type-enum": [2, "always", ["build", "chore", "docs"]]
     }
 
 }
